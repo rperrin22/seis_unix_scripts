@@ -1,0 +1,26 @@
+#! /bin/sh
+
+# bring in segy data
+#segyread tape=1003wc77.sgy | segyclean >1003wc77_in.su
+
+# get ranges
+#surange <1003wc77_in.su
+
+# window for testing
+#suwind <1003wc77_in.su key=cdp min=1950 max=2500 | sugain tpow=2.5 | sufilter f=1,10,40,50 amps=0,1,1,0 >Zone3A_shots.su
+#suwind <1003wc77_in.su key=cdp min=1500 max=1850 | sugain tpow=2.5 | sufilter f=1,10,40,50 amps=0,1,1,0 >Zone3B_shots.su
+suwind <1003wc77_in.su key=cdp min=800 max=1300 | sugain tpow=2.5 | sufilter f=1,10,40,50 amps=0,1,1,0 >Zone3C_shots.su
+
+# display windowed shot records
+#suximage <Zone3A_shots.su perc=99 title="Zone 3A shots" &
+#suximage <Zone3B_shots.su perc=99 title="Zone 3B shots" &
+
+# sort to cdp
+#susort <Zone3A_shots.su >Zone3A_cdp.su cdp
+#susort <Zone3B_shots.su >Zone3B_cdp.su cdp
+susort <Zone3C_shots.su >Zone3C_cdp.su cdp
+
+# display windowed cdp gathers
+#suximage <Zone3A_cdp.su perc=99 title="Zone 3A cdps" &
+#suximage <Zone3B_cdp.su perc=99 title="Zone 3B cdps" &
+

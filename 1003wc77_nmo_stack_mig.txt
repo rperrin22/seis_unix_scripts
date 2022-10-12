@@ -1,0 +1,4 @@
+#! /bin/sh
+
+sunmo par=stkvel_3C.p1 <Zone3C_cdp.su | sustack >Zone3C_stack.su 
+sumigtk <Zone3C_stack.su dxcdp=30 par=stkvel_3C.p1 |suximage perc=99 &
